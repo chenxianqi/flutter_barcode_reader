@@ -22,6 +22,10 @@
 - (void)showBarcodeView {
     BarcodeScannerViewController *scannerViewController = [[BarcodeScannerViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:scannerViewController];
+    if (@available(iOS 13.0, *)) {
+        [navigationController setModalPresentationStyle:UIModalPresentationFullScreen];
+    }
+    scannerViewController.title = @"二维码/条形码";
     scannerViewController.delegate = self;
     [self.hostViewController presentViewController:navigationController animated:NO completion:nil];
 }
